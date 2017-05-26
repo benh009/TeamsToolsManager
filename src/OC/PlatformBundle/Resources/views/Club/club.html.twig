@@ -1,0 +1,35 @@
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>Ajouter/Modification</h2>
+
+  <div class="well">
+    {{ form(form) }}
+  </div>
+
+
+  {% set equipes = club.equipes %}
+  {{ include("OCPlatformBundle:Equipe:equipesT.html.twig") }}
+
+
+  {% set coachs = club.coachs %}
+  {{ include("OCPlatformBundle:Coach:coachsT.html.twig") }}
+
+
+  {% set comites = club.comites %}
+  {{ include("OCPlatformBundle:Comite:comiteT.html.twig") }}
+
+
+
+
+  {% set joueurs = club.joueurs %}
+  {{ include("OCPlatformBundle:Joueur:joueursT.html.twig") }}
+
+
+
+
+
+
+{% endblock %}

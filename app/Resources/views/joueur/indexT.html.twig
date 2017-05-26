@@ -1,0 +1,39 @@
+{% block body %}
+    <h1>Joueurs list</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+
+            <th>Licence</th>
+            <th>Licence</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for joueur in joueurs %}
+            <tr>
+                <td>{{ joueur.licence }}</td>
+
+                <td>{% if joueur.licenceStatus %}Yes{% else %}No{% endif %}</td>
+
+                <td>{{ joueur.firstName }}</td>
+                <td>{{ joueur.lastName }}</td>
+
+
+                <td>
+                    <a href="{{ path('joueur_show', { 'id': joueur.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{{ path('joueur_edit', { 'id': joueur.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="{{ path('joueur_edit', { 'id': joueur.id }) }}" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('joueur_new') }}" class="btn btn-primary">Create   <i class="glyphicon glyphicon-plus"></i> </a>
+
+{% endblock %}

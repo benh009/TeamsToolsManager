@@ -1,0 +1,8 @@
+# src/OC/CoreBundle/Resources/config/routing.yml
+
+
+
+oc_core_contact:
+    path: /contact
+    defaults:
+        _controller: OCCoreBundle:Core:contact

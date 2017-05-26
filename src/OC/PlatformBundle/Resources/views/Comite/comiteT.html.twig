@@ -1,0 +1,87 @@
+{# src/OC/PlatformBundle/Resources/views/Club/clubs.html.twig #}
+
+
+
+{% block ocplatform_body %}
+
+    <h1>Comite</h1>
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Role</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            {% if is_granted('ROLE_AUTEUR') %}
+            <th>Telephone</th>
+            <th>email</th>
+            {% endif %}
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for comite in comites %}
+            <tr>
+                <td> {{ loop.index }} </td>
+                <td> {{ comite.role }} </td>
+                <td> {{ comite.FirstName }} </td>
+                <td> {{ comite.LastName}} </td>
+                {% if is_granted('ROLE_AUTEUR') %}
+                <td> <a href="tel:{{ comite.gsm }} ">{{ comite.gsm }} </a> </td>
+                <td> <a href="mailto:{{ comite.email }} ">{{ comite.email }} </a> </td>
+                {% endif %}
+                <td>
+                    {% if is_granted('ROLE_AUTEUR') %}
+                        <a href="{{ path('oc_platform_view',{'nameObjet':'comite', 'id': comite.id}) }}" class="tn btn-default">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+
+                    </a>
+                    {% endif %}
+                </td>
+                <td>
+
+                    {% if is_granted('ROLE_AUTEUR') %}
+                        <a href="{{ path('oc_platform_edit',{'nameObjet':'comite','id': comite.id}) }}" class="tn btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    {% endif %}
+
+
+
+
+                <td>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('oc_platform_delete',{'nameObjet':'comite','id': comite.id}) }}" class="tn btn-default">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    {% endif %}
+
+                <td/>
+
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% if is_granted('ROLE_AUTEUR') %}
+        <p>
+            <a href="{{ path('oc_platform_add',{'nameObjet':'comite'}) }}" class="btn btn-primary">
+
+                Ajouter comite
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </p>
+    {% endif %}
+
+
+
+
+{% endblock %}

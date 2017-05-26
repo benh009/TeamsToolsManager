@@ -1,0 +1,23 @@
+{# src/OC/PlatformBundle/Resources/views/equipe/equipe.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+
+  Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+
+{% block ocplatform_body %}
+    <h2>Ajouter/Modification</h2>
+
+    <div class="well">
+        {{ form(form) }}
+    </div>
+
+
+    {% set joueurs = equipe.joueurs %}
+    {{ include("OCPlatformBundle:Joueur:joueursT.html.twig") }}
+
+
+{% endblock %}

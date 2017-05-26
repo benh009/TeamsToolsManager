@@ -1,0 +1,47 @@
+oc_platform_arbitre:
+    resource: "@OCPlatformBundle/Controller/ArbitreController.php"
+    type:     annotation
+
+oc_platform_coach:
+    resource: "@OCPlatformBundle/Controller/CoachController.php"
+    type:     annotation
+
+oc_platform_equipe:
+    resource: "@OCPlatformBundle/Controller/EquipeController.php"
+    type:     annotation
+
+oc_platform_club:
+    resource: "@OCPlatformBundle/Controller/ClubController.php"
+    type:     annotation
+
+oc_platform_joueur:
+    resource: "@OCPlatformBundle/Controller/JoueurController.php"
+    type:     annotation
+
+
+
+# app/config/routing.yml
+
+
+
+oc_platform:
+    resource: "@OCPlatformBundle/Resources/config/routing.yml"
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile

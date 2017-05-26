@@ -1,0 +1,67 @@
+{% extends "OCPlatformBundle::layout.html.twig" %}
+{% block body %}
+    <h1>Coach</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ coach.id }}</td>
+            </tr>
+            <tr>
+                <th>Licence</th>
+                <td>{{ coach.licence }}</td>
+            </tr>
+            <tr>
+                <th>Licencestatus</th>
+                <td>{% if coach.licenceStatus %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ coach.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ coach.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Gsm</th>
+                <td>{{ coach.gsm }}</td>
+            </tr>
+            <tr>
+                <th>Sex</th>
+                <td>{{ coach.sex }}</td>
+            </tr>
+            <tr>
+                <th>Birthday</th>
+                <td>{% if coach.birthday %}{{ coach.birthday|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ coach.email }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ coach.weight }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ coach.height }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('coach_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('coach_edit', { 'id': coach.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

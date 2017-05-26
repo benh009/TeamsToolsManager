@@ -1,0 +1,66 @@
+{% extends 'OCPlatformBundle::layout.html.twig' %}
+
+{% block body %}
+    <h1>Joueurs</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Sizevareuse</th>
+                <td>{{ joueur.sizeVareuse }}</td>
+            </tr>
+            <tr>
+                <th>Licence</th>
+                <td>{{ joueur.licence }}</td>
+            </tr>
+            <tr>
+                <th>Licencestatus</th>
+                <td>{% if joueur.licenceStatus %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ joueur.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ joueur.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ joueur.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Gsm</th>
+                <td>{{ joueur.gsm }}</td>
+            </tr>
+            <tr>
+                <th>Sex</th>
+                <td>{{ joueur.sex }}</td>
+            </tr>
+            <tr>
+                <th>Birthday</th>
+                <td>{% if joueur.birthday %}{{ joueur.birthday|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ joueur.email }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ joueur.weight }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ joueur.height }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+            <a href="{{ path('joueur_index') }}" class="btn btn-primary">Back to the list</a>
+            <a href="{{ path('joueur_edit', { 'id': joueur.id }) }}" class="btn btn-primary">Edit</a>
+            {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-primary" value="Delete">
+            {{ form_end(delete_form) }}
+
+{% endblock %}

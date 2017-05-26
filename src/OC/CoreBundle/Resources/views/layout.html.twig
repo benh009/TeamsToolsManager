@@ -1,0 +1,113 @@
+{# src/OC/CoreBundle/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}OC Plateforme{% endblock %}</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    #map {
+      height: 100%;
+    }
+  </style>
+
+  {% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/web/css/bootstrap-sortable.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+
+
+  {% endblock %}
+
+</head>
+
+<body>
+
+
+{% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="/web/js/bootstrap-sortable.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+
+
+{% endblock %}
+
+
+
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ path('oc_platform_home' ) }}">Club Manager</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <li>
+            <a href="{{ path('fos_user_security_logout') }}">Déconnexion de  {{ app.user.username }}</a></li>
+          {% else %}
+        <li> <a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+
+        <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+          {% endif %}
+
+      </ul>
+
+  </div>
+  </div>
+</nav>
+
+<div class="container">
+
+
+
+  <div class="row">
+    <div id="menu" class="col-md-3">
+
+
+        <h3>Gestions</h3>
+        <ul class="nav nav-pills nav-stacked">
+
+          <li><a href="{{ path('club_index'  ) }}">Clubs</a></li>
+          <li><a href="{{ path('arbitre_index') }}">Arbitres</a></li>
+          {% if is_granted('ROLE_ADMIN') %}
+          <li><a href="{{ path('joueur_index' ) }}">Joueurs</a></li>
+          <li><a href="{{ path('coach_index') }}">Coachs</a></li>
+          <li><a href="{{ path('equipe_index'  ) }}">Equipes</a></li>
+          {% endif %}
+        </ul>
+
+
+
+
+
+
+
+    </div>
+    <div id="content" class="col-md-9">
+      {% block body %}
+      {% endblock %}
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p>Hofbauer © {{ 'now'|date('Y') }} </p>
+  </footer>
+</div>
+
+
+
+</body>
+</html>

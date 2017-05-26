@@ -1,0 +1,80 @@
+{# src/OC/PlatformBundle/Resources/views/Club/clubs.html.twig #}
+
+
+
+{% block ocplatform_body %}
+
+    <h1>Club</h1>
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom club</th>
+            <th>Matricule</th>
+            <th>Province</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for club in clubs %}
+            <tr>
+                <td> {{ loop.index }} </td>
+                <td> {{ club.Name }} </td>
+                <td> {{ club.Matricule }} </td>
+                <td> {{ club.Province }} </td>
+
+                <td>
+                    <a href="{{ path('oc_platform_view',{'nameObjet':'club', 'id': club.id}) }}" class="tn btn-default">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+
+                    </a>
+                </td>
+                <td>
+
+                    {% if is_granted('ROLE_AUTEUR') and ( is_granted('ROLE_ADMIN') or app.user.club.id == club.id) %}
+                        <a href="{{ path('oc_platform_edit',{'nameObjet':'club','id': club.id}) }}" class="tn btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    {% endif %}
+
+
+                <td>
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('oc_platform_delete',{'nameObjet':'club','id': club.id}) }}" class="tn btn-default">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    {% endif %}
+
+
+                <td/>
+
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>
+            <a href="{{ path('oc_platform_add',{'nameObjet':'club'}) }}" class="btn btn-primary">
+
+                Ajouter club
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </p>
+    {% endif %}
+
+
+
+
+{% endblock %}

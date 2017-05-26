@@ -1,0 +1,25 @@
+{% extends "OCPlatformBundle::layout.html.twig" %}
+{% block body %}
+    <h1>Equipe</h1>
+
+    <table  class="table table-striped">
+        <tbody>
+        <tr>
+            <th>Name</th>
+            <td>{{ equipe.name }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('equipe_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('equipe_edit', { 'id': equipe.id }) }}">Edit</a>
+        </li>
+        <li>
+            <a href="{{ path('equipe_delete', { 'id': equipe.id }) }}">Edit</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,124 @@
+{# src/OC/PlatformBundle/Resources/views/Club/joueurs.html.twig #}
+
+
+{% block ocplatform_body %}
+
+
+
+
+    <h2>Joueurs</h2>
+    <table id="example" class="table table-hover table-striped" >
+        <thead>
+        <tr>
+            <th>#</th>
+            <th></th>
+
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            {% if is_granted('ROLE_AUTEUR') %}
+                <th> Gsm</th>
+                <th> Email</th>
+                <th> Licence</th>
+                <th> Licence Payée</th>
+            {% endif %}
+
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for joueur in joueurs %}
+            <tr>
+                <td> {{ loop.index }} </td>
+                <td>
+                    {% if  not (joueur.image is null )%}
+
+                        <img
+                                src="{{ asset(joueur.image.webPath) }}"
+                                alt="{{ joueur.image.alt }}"
+                                height="42" width="42"
+                        />
+                    {% endif %}
+                </td>
+                <td contenteditable='true'> {{ joueur.firstName }} </td>
+                <td> {{ joueur.lastName }} </td>
+                <td> {{ joueur.birthday|date("m/d/Y") }} </td>
+                 {% if is_granted('ROLE_AUTEUR') %}
+                    <td> <a href="tel:{{ joueur.gsm }} ">{{ joueur.gsm }} </a> </td>
+                    <td> <a href="mailto:{{ joueur.email }} ">{{ joueur.email }} </a> </td>
+                    <td> {{ joueur.licence }} </td>
+                    <td> {{ joueur.licenceStatus }} </td>
+                {% endif %}
+                <td>
+                    {% if is_granted('ROLE_AUTEUR') %}
+                    <a href="{{ path('oc_platform_view',{'nameObjet':'joueur','id': joueur.id}) }}" class="tn btn-default">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+
+                    </a>
+                    {% endif %}
+                </td>
+                <td>
+
+                    {% if is_granted('ROLE_AUTEUR') %}
+                        <a href="{{ path('oc_platform_edit',{'nameObjet':'joueur','id': joueur.id}) }}" class="tn btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    {% endif %}
+
+
+
+                <td>
+
+
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('oc_platform_delete',{'nameObjet':'joueur','id': joueur.id}) }}" class="tn btn-default">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    {% endif %}
+
+
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+
+    {% if is_granted('ROLE_AUTEUR') %}
+        <p>
+            <a href="{{ path('oc_platform_add',{'nameObjet':'joueur'}) }}" class="btn btn-primary">
+
+                Ajouter joueur
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </p>
+
+    {% endif %}
+
+<script>
+
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "columnDefs": [
+                { "orderable": false, "targets": 0 },
+                { "orderable": false, "targets": 10 },
+                { "orderable": false, "targets": 11 },
+                { "orderable": false, "targets": 9 }
+            ]
+
+
+        });
+    } );
+</script>
+
+
+
+{% endblock %}

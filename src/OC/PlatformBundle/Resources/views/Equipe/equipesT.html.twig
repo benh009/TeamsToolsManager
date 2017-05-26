@@ -1,0 +1,110 @@
+{# src/OC/PlatformBundle/Resources/views/equipe/equipes.html.twig #}
+
+
+
+{% block ocplatform_body %}
+
+
+
+
+
+  <h1>Equipes</h1>
+
+
+      <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Category</th>
+                <th>Club</th>
+                <th>Sex</th>
+                <th> </th>
+                <th> </th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody>
+
+                  {% for equipe in equipes %}
+                  <tr>
+                    <td> {{ loop.index }} </td>
+                    <td> {{equipe.Name}} </td>
+                    {% if equipe.Category != null  %}
+                    <td> {{equipe.Category.name}} </td>
+                    {% else %}
+                        <td>  </td>
+                    {% endif %}
+
+                    <td> {{equipe.Club.name}} </td>
+                      {% if equipe.Category != null  %}
+                          <td> {{equipe.Category.sex}} </td>
+                      {% else %}
+                          <td>  </td>
+                      {% endif %}
+                    <td>     
+                      <a href="{{ path('oc_platform_view',{'nameObjet':'equipe', 'id': equipe.id}) }}" class="tn btn-default">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                      
+                      </a>
+                    </td>
+                    <td>
+
+                      {% if is_granted('ROLE_AUTEUR') %}
+                        <a href="{{ path('oc_platform_edit',{'nameObjet':'equipe','id': equipe.id}) }}" class="tn btn-default">
+                          <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                      {% endif %}
+
+
+
+                    <td>
+
+
+                      {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('oc_platform_delete',{'nameObjet':'equipe','id': equipe.id}) }}" class="tn btn-default">
+                          <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                      {% endif %}
+
+
+
+
+
+                    
+                    </tr>
+
+                  {% endfor %}
+
+
+
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+    {% if is_granted('ROLE_AUTEUR') %}
+        <p>
+            <a href="{{ path('oc_platform_add',{'nameObjet':'equipe'}) }}" class="btn btn-primary">
+
+                Ajouter equipee
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </p>
+    {% endif %}
+
+
+
+  
+
+
+
+
+
+
+{% endblock %}

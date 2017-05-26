@@ -1,0 +1,83 @@
+{# src/OC/PlatformBundle/Resources/views/Club/clubs.html.twig #}
+
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+
+    Lecture d'une annonce - {{ parent() }}
+{% endblock %}
+
+
+{% block ocplatform_body %}
+
+    <h1>Arbitres</h1>
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Telephone</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for arbitre in arbitres %}
+            <tr>
+                <td> {{ loop.index }} </td>
+                <td> {{ arbitre.FirstName }} </td>
+                <td> {{ arbitre.LastName}} </td>
+                <td> {{ arbitre.Gsm}} </td>
+                <td>
+            {% if is_granted('ROLE_AUTEUR') %}
+                    <a href="{{ path('oc_platform_view',{'nameObjet':'arbitre', 'id': arbitre.id}) }}" class="tn btn-default">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+
+                    </a>
+            {% endif %}
+                </td>
+                <td>
+                {% if is_granted('ROLE_AUTEUR') %}
+                    <a href="{{ path('oc_platform_edit',{'nameObjet':'arbitre','id': arbitre.id}) }}" class="tn btn-default">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                {% endif %}
+
+                <td>
+                    {% if is_granted('ROLE_AUTEUR') %}
+                    <a href="{{ path('oc_platform_delete',{'nameObjet':'arbitre','id': arbitre.id}) }}" class="tn btn-default">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                    {% endif %}
+                <td/>
+
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% if is_granted('ROLE_AUTEUR') %}
+        <p>
+            <a href="{{ path('oc_platform_add',{'nameObjet':'arbitre'}) }}" class="btn btn-primary">
+
+                Ajouter arbitre
+                <i class="glyphicon glyphicon-plus"></i>
+            </a>
+        </p>
+
+    {% endif %}
+
+
+
+
+
+
+
+{% endblock %}

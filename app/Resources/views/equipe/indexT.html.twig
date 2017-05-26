@@ -1,0 +1,28 @@
+{% block body %}
+    <h1>Equipes list</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Club</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for equipe in equipes %}
+            <tr>
+                <td>{{ equipe.club }}</td>
+                <td>{{ equipe.name }}</td>
+                <td>
+                    <a href="{{ path('equipe_show', { 'id': equipe.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{{ path('equipe_edit', { 'id': equipe.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="{{ path('equipe_edit', { 'id': equipe.id }) }}" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('equipe_new') }}" class="btn btn-primary">Create   <i class="glyphicon glyphicon-plus"></i> </a>
+
+{% endblock %}

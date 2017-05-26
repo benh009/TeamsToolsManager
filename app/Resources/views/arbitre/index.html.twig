@@ -1,0 +1,49 @@
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1>Arbitres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Licence</th>
+                <th>Licencestatus</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Gsm</th>
+                <th>Sex</th>
+                <th>Birthday</th>
+                <th>Email</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for arbitre in arbitres %}
+            <tr>
+                <td><a href="{{ path('arbitre_show', { 'id': arbitre.id }) }}">{{ arbitre.id }}</a></td>
+                <td>{{ arbitre.licence }}</td>
+                <td>{% if arbitre.licenceStatus %}Yes{% else %}No{% endif %}</td>
+                <td>{{ arbitre.firstName }}</td>
+                <td>{{ arbitre.lastName }}</td>
+                <td>{{ arbitre.gsm }}</td>
+                <td>{{ arbitre.sex }}</td>
+                <td>{% if arbitre.birthday %}{{ arbitre.birthday|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ arbitre.email }}</td>
+                <td>{{ arbitre.weight }}</td>
+                <td>{{ arbitre.height }}</td>
+                <td>
+                    <a href="{{ path('arbitre_show', { 'id': arbitre.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{{ path('arbitre_edit', { 'id': arbitre.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="{{ path('arbitre_edit', { 'id': arbitre.id }) }}" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('arbitre_new') }}" class="btn btn-primary">Create   <i class="glyphicon glyphicon-plus"></i> </a>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="842943a8-7a08-4c23-a7e9-5ff352c51931" name="ecclhF" url="http://ftp.cluster010.hosting.ovh.net">
+        <fileTransfer host="ftp.cluster010.hosting.ovh.net" port="21" password="dfe4dfdfdfc0dfecdfdcdf99dff0dfd9" username="entented">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" forceListCommand="true" passiveMode="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,44 @@
+{% extends "OCPlatformBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1>Coaches list</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Licence</th>
+                <th>Licencestatus</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Gsm</th>
+                <th>Sex</th>
+                <th>Birthday</th>
+                <th>Email</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coach in coaches %}
+            <tr>
+                <td>{{ coach.licence }}</td>
+                <td>{% if coach.licenceStatus %}Yes{% else %}No{% endif %}</td>
+                <td>{{ coach.firstName }}</td>
+                <td>{{ coach.lastName }}</td>
+                <td>{{ coach.gsm }}</td>
+                <td>{{ coach.sex }}</td>
+                <td>{% if coach.birthday %}{{ coach.birthday|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ coach.email }}</td>
+                <td>
+                    <a href="{{ path('coach_show', { 'id': coach.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{{ path('coach_edit', { 'id': coach.id }) }}" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a href="{{ path('coach_edit', { 'id': coach.id }) }}" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('coach_new') }}" class="btn btn-primary">Create   <i class="glyphicon glyphicon-plus"></i> </a>
+
+{% endblock %}

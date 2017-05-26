@@ -1,0 +1,67 @@
+# src/OC/PlatformBundle/Resources/config/routing.yml
+
+
+oc_platform_coach:
+    resource: "@OCPlatformBundle/Controller/CoachController.php"
+    type:     annotation
+
+
+oc_platform_home:
+    path:      /
+    defaults:
+        _controller: OCPlatformBundle:Club:viewClub
+
+
+
+oc_platform_add_InClub:
+    path:      club_{idClub}/{nameObjet}/add/
+    defaults:
+        _controller: OCPlatformBundle:List:addObjet
+    requirements:
+        nameObjet: coach|equipe|club|joueur|arbitre|comite
+
+
+oc_platform_add:
+    path:      /{nameObjet}/add
+    defaults:
+        _controller: OCPlatformBundle:List:addObjet
+    requirements:
+        nameObjet: coach|equipe|club|joueur|arbitre|comite
+
+
+
+oc_platform_view:
+    path:      /{nameObjet}_{id}
+    defaults:
+        _controller: OCPlatformBundle:List:viewObjet
+    requirements:
+        id: \d+
+        nameObjet: coach|equipe|club|joueur|arbitre|comite
+
+oc_platform_views:
+    path:      /{nameObjets}
+    defaults:
+        _controller: OCPlatformBundle:List:viewObjets
+    requirements:
+        nameObjets: coachs|equipes|joueurs|clubs|arbitres|comites
+
+
+
+oc_platform_delete:
+    path:      /{nameObjet}_{id}/delete
+    defaults:
+        _controller: OCPlatformBundle:List:deleteObjet
+    requirements:
+        id: \d+
+        nameObjet: coach|equipe|joueur|club|arbitre|comite
+
+
+oc_platform_edit:
+    path:      /{nameObjet}_{id}/edit/
+    defaults:
+        _controller: OCPlatformBundle:List:editObjet
+    requirements:
+        id: \d+
+        nameObjet: coach|equipe|joueur|club|arbitre|comite
+
+

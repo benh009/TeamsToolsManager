@@ -1,0 +1,39 @@
+{% extends "OCPlatformBundle::layout.html.twig" %}
+{% block body %}
+    <h1>Club</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ club.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ club.name }}</td>
+            </tr>
+            <tr>
+                <th>Province</th>
+                <td>{{ club.province }}</td>
+            </tr>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ club.matricule }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    {% set equipes = club.equipes %}
+
+
+    {{ include(":equipe:indexT.html.twig") }}
+    {% set joueurs = club.joueurs %}
+    {{ include(":joueur:indexT.html.twig") }}
+
+
+
+
+{% endblock %}
